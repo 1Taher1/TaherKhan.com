@@ -1,0 +1,335 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	font-family: "Poppins", sans-serif;
+	line-height: 1.6;
+	color: #333;
+	background: #f9f9f9;
+	scroll-padding-top: 80px; /* prevent content hiding under sticky nav */
+}
+
+/*=============== Variables ===============*/
+:root {
+	--primary: #2b7a78;
+	--secondary: #17252a;
+	--accent: #def2f1;
+	--light: #f9f9f9;
+	--transition: 0.3s ease;
+}
+
+/*=============== Custom Text Selection ===============*/
+::selection {
+	background-color: var(--accent);
+	color: var(--secondary);
+}
+/*=============== Navigation ===============*/
+nav {
+	background: var(--primary);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.nav-container {
+	max-width: 1100px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	height: 60px;
+}
+.logo {
+	color: #fff;
+	font-size: 1.5em;
+	font-weight: 600;
+	transition: transform var(--transition), color var(--transition);
+}
+.logo:hover {
+	transform: scale(1.08);
+	color: var(--accent);
+}
+
+/* hamburger icon checkbox for Mobile  */
+.nav-toggle {
+	display: none;
+}
+.nav-toggle-label {
+	display: none;
+	cursor: pointer;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+	display: block;
+	background: #fff;
+	height: 3px;
+	width: 25px;
+	border-radius: 2px;
+	position: relative;
+	transition: transform 0.3s ease;
+}
+.nav-toggle-label span::before {
+	content: "";
+	position: absolute;
+	top: -8px;
+}
+.nav-toggle-label span::after {
+	content: "";
+	position: absolute;
+	top: 8px;
+}
+
+.nav-links {
+	list-style: none;
+	display: flex;
+	gap: 20px;
+}
+.nav-links a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+	position: relative;
+	transition: color var(--transition);
+}
+.nav-links a::after {
+	content: "";
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: var(--accent);
+	transition: width var(--transition);
+}
+.nav-links a:hover {
+	color: var(--accent);
+}
+.nav-links a:hover::after {
+	width: 100%;
+}
+
+/* mobile menu */
+@media (max-width: 768px) {
+	.nav-toggle-label {
+		display: block;
+	}
+	.nav-links {
+		flex-direction: column;
+		background: var(--primary);
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.4s ease-in-out;
+	}
+	.nav-toggle:checked + .nav-toggle-label + .nav-links {
+		max-height: 500px;
+	}
+	.nav-links li {
+		margin: 12px 0;
+		text-align: center;
+	}
+}
+
+/*=============== Hero ===============*/
+#hero {
+	background: linear-gradient(135deg, var(--primary), var(--accent));
+	color: #fff;
+	text-align: center;
+	padding: 100px 20px;
+}
+.hero-name {
+	transition: transform var(--transition), color var(--transition);
+}
+.hero-name:hover {
+	transform: scale(1.08);
+	color: var(--accent);
+}
+.hero-content {
+	opacity: 0;
+	animation: fadeIn 1s forwards 0.5s;
+}
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+.hero-content h1 {
+	font-size: 3em;
+	margin-bottom: 20px;
+}
+.hero-content p {
+	font-size: 1.2em;
+	margin-bottom: 30px;
+}
+
+/*=============== Button & Card Hover Effects ===============*/
+.btn {
+	position: relative;
+	display: inline-block;
+	padding: 12px 25px;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+	border-radius: 505px;
+	background: var(--secondary);
+	overflow: hidden;
+	transition: background var(--transition), transform var(--transition);
+}
+.btn::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background: var(--primary);
+	z-index: -1;
+	transition: height var(--transition);
+}
+.btn:hover {
+	background: var(--primary);
+	transform: scale(1.15);
+}
+.btn:hover::after {
+	height: 100%;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 20px rgba(43, 122, 120, 0.2);
+	transition: all 0.3s ease;
+}
+
+/* Hierarchical pop‑out of inner text */
+.card:hover .card-title {
+	transform: scale(1.1);
+}
+.card:hover .card-sub,
+.card:hover .card-list {
+	transform: scale(1.05);
+}
+.card:hover .card-date {
+	transform: scale(1.02);
+}
+
+/*=============== Sections ===============*/
+.section {
+	padding: 60px 20px;
+}
+.container {
+	max-width: 1100px;
+	margin: auto;
+	text-align: center;
+}
+.section-title {
+	font-size: 2.5em;
+	color: var(--primary);
+	margin-bottom: 20px;
+	position: relative;
+	display: inline-block;
+	transition: transform var(--transition), color var(--transition);
+}
+.section-title::after {
+	content: "";
+	display: block;
+	width: 60px;
+	height: 4px;
+	background: var(--secondary);
+	margin: 10px auto 0;
+}
+.section-title:hover {
+	color: #a1b4b4;
+	transform: scale(1.1);
+}
+.about_paras {
+	text-align: left;
+}
+
+/*=============== Grids & Cards ===============*/
+.card-grid,
+.skills-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+}
+.card,
+.skill-card {
+	background: #fff;
+	padding: 20px;
+	flex: 1 1 300px;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	transition: transform var(--transition), box-shadow var(--transition);
+}
+.card-title,
+.card-sub,
+.card-date,
+.card-list {
+	transition: transform var(--transition);
+	transform-origin: center top;
+}
+.card-title {
+	color: var(--secondary);
+	margin-bottom: 10px;
+}
+.card-sub {
+	font-weight: 500;
+	margin-bottom: 8px;
+	color: #555;
+}
+.card-date {
+	color: #777;
+	font-size: 0.9em;
+}
+.card-list {
+	list-style: circle;
+	margin-left: 20px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+/*=============== Contact Styles ===============*/
+.contact-items {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+.contact-item {
+	display: flex;
+	align-items: center;
+}
+.contact-icon {
+	width: 1.2em;
+	height: 1.2em;
+	margin-right: 0.5em;
+}
+.contact-item a {
+	text-decoration: none;
+	color: var(--secondary);
+	transition: color var(--transition);
+}
+.contact-item a:hover {
+	color: #38c4bf;
+}
+
+/*=============== Footer ===============*/
+footer {
+	background: var(--secondary);
+	color: #fff;
+	text-align: center;
+	padding: 20px 0;
+}
